@@ -1,0 +1,32 @@
+#include <stdio.h>
+
+int main(){
+    int n;
+
+    printf("Sk Mudhaseer Ahamed-192211968\n");
+    printf("Enter Size of Array: ");
+    scanf("%d", &n);
+
+    int a[n];
+
+    for(int i=0; i<n; i++){
+        printf("Enter Element at position %d: ", i+1);
+        scanf("%d", &a[i]);
+    }
+
+    printf("Entered Elements Are:\n");
+    for(int i=0; i<n; i++){
+        printf("[%d]",a[i]);
+    }
+
+    int max = a[0];
+    for(int i=0; i<n; i++){
+        if(a[i]>max){
+            max = a[i];
+        }
+    }
+
+    printf("\nMaximum Elemet in the Array: %d",max);
+
+    return 0;
+}
