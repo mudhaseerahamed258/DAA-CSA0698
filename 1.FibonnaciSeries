@@ -1,0 +1,27 @@
+#include <stdio.h>
+
+int fibonnaci(int n){
+    if(n==1 || n==2){
+        return 1;
+    }
+    else{
+        return fibonnaci(n-1) + fibonnaci(n-2);
+    }
+}
+
+int main(){
+
+    int x;
+
+    printf("Sk Mudhaseer Ahamed-192211968\n");
+
+    printf("Enter a Number Of Fibonacci Series: ");
+    scanf("%d", &x);
+
+    printf("Fibonacci Series Are: ");
+    for(int i=1; i<=x; i++){
+        printf("%d ", fibonnaci(i));
+    }
+
+    return 0;
+}
