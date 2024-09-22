@@ -1,0 +1,76 @@
+#include <stdio.h>
+#include <limits.h>
+
+#define MAX_VERTICES 100
+#define INF INT_MAX
+
+int dist[MAX_VERTICES][MAX_VERTICES];
+int V;
+
+void floydWarshall() {
+    int i, j, k;
+
+    printf("Enter the number of vertices: ");
+    if (scanf("%d", &V) != 1) {
+        fprintf(stderr, "Error reading number of vertices.\n");
+        return;
+    }
+
+    if (V < 1 || V > MAX_VERTICES) {
+        fprintf(stderr, "Number of vertices must be between 1 and %d.\n", MAX_VERTICES);
+        return;
+    }
+
+    printf("Enter the adjacency matrix:\n");
+    for (i = 0; i < V; i++) {
+        for (j = 0; j < V; j++) {
+            if (scanf("%d", &dist[i][j]) != 1) {
+                fprintf(stderr, "Error reading distance for element (%d, %d).\n", i, j);
+                return;
+            }
+            if (dist[i][j] == 0 && i != j) {
+                dist[i][j] = INF;
+            }
+        }
+    }
+
+    printf("Initial matrix:\n");
+    for (i = 0; i < V; i++) {
+        for (j = 0; j < V; j++) {
+            if (dist[i][j] == INF) {
+                printf("INF ");
+            } else {
+                printf("%d ", dist[i][j]);
+            }
+        }
+        printf("\n");
+    }
+
+    for (k = 0; k < V; k++) {
+        for (i = 0; i < V; i++) {
+            for (j = 0; j < V; j++) {
+                if (dist[i][k] != INF && dist[k][j] != INF && dist[i][j] > dist[i][k] + dist[k][j]) {
+                    dist[i][j] = dist[i][k] + dist[k][j];
+                }
+            }
+        }
+    }
+
+    printf("Shortest distances between every pair of vertices:\n");
+    for (i = 0; i < V; i++) {
+        for (j = 0; j < V; j++) {
+            if (dist[i][j] == INF) {
+                printf("INF ");
+            } else {
+                printf("%d ", dist[i][j]);
+            }
+        }
+        printf("\n");
+    }
+}
+
+int main() {
+    printf("Sk Mudhaseer Ahamed-192211968\n");
+    floydWarshall();
+    return 0;
+}
